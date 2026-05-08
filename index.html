@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>NotebookLMプロンプト集</title>
+
+  <style>
+    body{
+      font-family:sans-serif;
+      background:#f5f5f5;
+      padding:40px;
+    }
+
+    h1{
+      margin-bottom:30px;
+    }
+
+    .card{
+      background:white;
+      padding:20px;
+      border-radius:12px;
+      margin-bottom:20px;
+      box-shadow:0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    button{
+      background:#222;
+      color:white;
+      border:none;
+      padding:10px 16px;
+      border-radius:8px;
+      cursor:pointer;
+    }
+
+    pre{
+      background:#f0f0f0;
+      padding:12px;
+      border-radius:8px;
+      white-space:pre-wrap;
+    }
+
+    #toast{
+      position:fixed;
+      top:20px;
+      right:20px;
+      background:#222;
+      color:white;
+      padding:12px 18px;
+      border-radius:8px;
+      opacity:0;
+      transition:0.3s;
+    }
+
+    #toast.show{
+      opacity:1;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>NotebookLM プロンプト集</h1>
+
+<div class="card">
+  <h2>キャラ分析</h2>
+
+  <pre id="prompt1">あなたは商業編集者です。
+以下の観点でキャラクターを分析してください。</pre>
+
+  <button onclick="copyText('prompt1')">
+    📋 コピー
+  </button>
+</div>
+
+<div class="card">
+  <h2>時系列分析</h2>
+
+  <pre id="prompt2">以下の本文から時系列を整理してください。</pre>
+
+  <button onclick="copyText('prompt2')">
+    📋 コピー
+  </button>
+</div>
+
+<div id="toast">
+✅ コピー完了
+</div>
+
+<script>
+function copyText(id){
+
+  const text =
+    document.getElementById(id).innerText;
+
+  navigator.clipboard.writeText(text);
+
+  const toast =
+    document.getElementById("toast");
+
+  toast.classList.add("show");
+
+  setTimeout(()=>{
+    toast.classList.remove("show");
+  },1500);
+}
+</script>
+
+</body>
+</html>
